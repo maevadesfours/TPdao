@@ -43,7 +43,7 @@ public class CountryRepositoryTest {
         assertEquals(combienDePaysDansLeJeuDeTest, nombre, "On doit trouver 4 pays" );
     }
     @Test
-    @Sql    ("test-data.sql")
+    @Sql("test-data.sql")
     void verifComptePopulationFr(){
         log.info("On compte les habitants du pays qui a pour ID 1");
         assertEquals( 12 , countryDAO.comptePopulationSQL(1));
@@ -60,4 +60,20 @@ public class CountryRepositoryTest {
         log.info("On compte les habitants du pays qui a pour ID 3");
         assertEquals( 27 , countryDAO.comptePopulationSQL(3));
     }
+
+    @Test
+    @Sql("test-data.sql")
+    void listePopulationTest(){
+        log.info("On teste la listes de population");
+        assertEquals(3, countryDAO.listePaysJPQL().size());
+    }
+
+    @Test
+    @Sql("test-data.sql")
+    void listePopulationTestFr(){
+        log.info("On teste la liste pour la France");
+        assertEquals(12, countryDAO.listePaysJPQL().get(0).getPop());
+        assertEquals("France", countryDAO.listePaysJPQL().get(0).getNom());
+    }
+
 }
