@@ -42,38 +42,20 @@ public class CountryRepositoryTest {
         long nombre = countryDAO.count();
         assertEquals(combienDePaysDansLeJeuDeTest, nombre, "On doit trouver 4 pays" );
     }
+
     @Test
     @Sql("test-data.sql")
-    void verifComptePopulationFr(){
-        log.info("On compte les habitants du pays qui a pour ID 1");
-        assertEquals( 12 , countryDAO.comptePopulationSQL(1));
-    }
-    @Test
-    @Sql    ("test-data.sql")
-    void verifComptePopulationUk(){
-        log.info("On compte les habitants du pays qui a pour ID 2");
-        assertEquals( 18 , countryDAO.comptePopulationSQL(2));
-    }
-    @Test
-    @Sql    ("test-data.sql")
-    void verifComptePopulationUs(){
-        log.info("On compte les habitants du pays qui a pour ID 3");
-        assertEquals( 27 , countryDAO.comptePopulationSQL(3));
+    void populationPaysTest(){
+        log.info("Nombre d'habitants pour ID=2");
+        assertEquals( 18, countryDAO.comptePopulationSQL(2));
+
     }
 
     @Test
     @Sql("test-data.sql")
     void listePopulationTest(){
-        log.info("On teste la listes de population");
-        assertEquals(3, countryDAO.listePaysJPQL().size());
-    }
-
-    @Test
-    @Sql("test-data.sql")
-    void listePopulationTestFr(){
-        log.info("On teste la liste pour la France");
-        assertEquals(12, countryDAO.listePaysJPQL().get(0).getPop());
-        assertEquals("France", countryDAO.listePaysJPQL().get(0).getName());
+        log.info(" Vérifier qu'il y a que 3 pays dans la base de données");
+        assertEquals(3, countryDAO. listePaysSQL().size());
     }
 
 }

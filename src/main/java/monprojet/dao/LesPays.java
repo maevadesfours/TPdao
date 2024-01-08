@@ -1,6 +1,6 @@
-package monprojet.dto;
+package monprojet.dao;
 
 public interface LesPays {
         String getName();
-        int getPop();
+        Integer getPop();
     }
