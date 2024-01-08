@@ -23,6 +23,10 @@ public class City {
 
     private int population;
 
+    public int getPop(){
+        return population;
+    }
+
     @NonNull
     @ManyToOne(optional = false) // obligatoire, la clé étrangère ne doit pas être nulle
     Country country;

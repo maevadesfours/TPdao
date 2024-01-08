@@ -73,7 +73,7 @@ public class CountryRepositoryTest {
     void listePopulationTestFr(){
         log.info("On teste la liste pour la France");
         assertEquals(12, countryDAO.listePaysJPQL().get(0).getPop());
-        assertEquals("France", countryDAO.listePaysJPQL().get(0).getNom());
+        assertEquals("France", countryDAO.listePaysJPQL().get(0).getName());
     }
 
 }

@@ -24,6 +24,10 @@ public class Country {
     @NonNull
     private String name;
 
+    public String getName(){
+        return name;
+    }
+
     @OneToMany(mappedBy="country")
     // Essayer sans "mappedBy" pour voir le schéma relationnel généré
     // @OneToMany

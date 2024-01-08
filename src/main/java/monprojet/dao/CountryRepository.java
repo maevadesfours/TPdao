@@ -20,9 +20,10 @@ public interface CountryRepository extends JpaRepository<Country, Integer> {
     public int comptePopulationSQL(int numID);
 
     //Une méthode sans paramètre, qui renvoie une liste (nom du pays, population).
-    @Query ("SELECT COUNTRY.NAME, SUM(POPULATION) AS POPULATION"+
+    @Query (value="SELECT COUNTRY.NAME AS NOM, SUM(CITY.POPULATION) AS POPULATION"+
             "FROM COUNTRY"+
             "INNER JOIN CITY ON COUNTRY.ID = CITY.COUNTRY_ID"+
-            "GROUP BY COUNTRY.NAME")
-    public HashMap<String, Integer> listePaysJPQL();
+            "GROUP BY COUNTRY.NAME", nativeQuery = true)
+    public List<LesPays> listePaysJPQL();
+
 }
