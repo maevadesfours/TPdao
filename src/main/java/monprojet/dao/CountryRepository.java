@@ -1,5 +1,6 @@
 package monprojet.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -12,4 +13,16 @@ import monprojet.entity.Country;
 
 public interface CountryRepository extends JpaRepository<Country, Integer> {
 
+    @Query (value = "SELECT SUM(POPULATION) AS POPULATION" +
+            "FROM COUNTRY INNER JOIN CITY ON COUNTRY.ID = CITY.COUNTRY_ID" +
+            "WHERE COUNTRY.ID = numID",
+            nativeQuery = true)
+    public int comptePopulationSQL(Integer numID);
+
+    //Une méthode sans paramètre, qui renvoie une liste (nom du pays, population).
+    @Query ("SELECT COUNTRY.NAME, SUM(POPULATION) AS POPULATION"+
+            "FROM COUNTRY"+
+            "INNER JOIN CITY ON COUNTRY.ID = CITY.COUNTRY_ID"+
+            "GROUP BY COUNTRY.NAME")
+    public HashMap<String, Integer> listePaysJPQL();
 }
